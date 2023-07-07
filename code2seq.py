@@ -4,6 +4,7 @@ import tensorflow as tf
 
 from config import Config
 from interactive_predict import InteractivePredictor
+from predict import Predictor
 from model import Model
 
 if __name__ == '__main__':
@@ -20,6 +21,7 @@ if __name__ == '__main__':
     parser.add_argument('--release', action='store_true',
                         help='if specified and loading a trained model, release the loaded model for a smaller model '
                              'size.')
+    parser.add_argument('--interactive', action='store_true')
     parser.add_argument('--predict', action='store_true')
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--seed', type=int, default=239)
@@ -42,8 +44,11 @@ if __name__ == '__main__':
         print('Accuracy: ' + str(results))
         print('Precision: ' + str(precision) + ', recall: ' + str(recall) + ', F1: ' + str(f1))
         print('Rouge: ', rouge)
-    if args.predict:
+    if args.interactive:
         predictor = InteractivePredictor(config, model)
+        predictor.predict()
+    if args.predict:
+        predictor = Predictor(config, model)
         predictor.predict()
     if args.release and args.load_path:
         model.evaluate(release=True)
