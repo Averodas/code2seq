@@ -23,6 +23,7 @@ if __name__ == '__main__':
                              'size.')
     parser.add_argument('--interactive', action='store_true')
     parser.add_argument('--predict', action='store_true')
+    parser.add_argument('--code', dest='code_string')
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--seed', type=int, default=239)
     args = parser.parse_args()
@@ -47,8 +48,8 @@ if __name__ == '__main__':
     if args.interactive:
         predictor = InteractivePredictor(config, model)
         predictor.predict()
-    if args.predict:
-        predictor = Predictor(config, model)
+    if args.predict and args.code_string:
+        predictor = Predictor(config, model, args.code_string)
         predictor.predict()
     if args.release and args.load_path:
         model.evaluate(release=True)

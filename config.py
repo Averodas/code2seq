@@ -24,7 +24,7 @@ class Config:
         config.RNN_DROPOUT_KEEP_PROB = 0.5
         config.BIRNN = True
         config.RANDOM_CONTEXTS = True
-        config.BEAM_WIDTH = 0
+        config.BEAM_WIDTH = 5
         config.USE_MOMENTUM = True
         return config
 
@@ -65,7 +65,7 @@ class Config:
         self.RNN_DROPOUT_KEEP_PROB = 0
         self.BIRNN = False
         self.RANDOM_CONTEXTS = True
-        self.BEAM_WIDTH = 1
+        self.BEAM_WIDTH = 5
         self.USE_MOMENTUM = True
         self.RELEASE = args.release
 
@@ -94,6 +94,6 @@ class Config:
         config.RNN_DROPOUT_KEEP_PROB = 1
         config.BIRNN = True
         config.RANDOM_CONTEXTS = True
-        config.BEAM_WIDTH = 0
+        config.BEAM_WIDTH = 5
         config.USE_MOMENTUM = False
         return config
